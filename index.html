@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="style_file" rel="stylesheet" type="text/css" href="style.css" />
+    <link href="piano.ico" rel="icon" type="image/x-icon" />
+    <title>Piano notes learning app</title>
+    <script src="vexflow.js" charset="utf-8"></script>
+    <script src="script.js" charset="utf-8"></script>
+  </head>
+
+  <body onload="onPageLoad();">
+
+    <div id="infobox">
+      <div id="infobox_text">JavaScript is disabled</div>
+      <img id="infobox_close_btn" src="icons/close-window-24.png" onclick="closeInfoBox();">
+    </div>
+
+    <div id="toolbar">
+      <button onClick="startTesting();">Start</button>
+      <button onClick="scrollToID('help')">Help</button>
+    </div>
+
+    <div id="score">
+      <span id="correct_answers" >Correct: 0</span>;
+      <span id="incorrect_answers">Incorrect: 0</span>
+    </div>
+
+    <div id="renderedNoteContainer">
+      <div id="renderedNote"></div>
+      <div id="renderedNoteName"></div>
+    </div>
+
+    <object id="piano_keyboard_svg" type="image/svg+xml" data="PianoKeyboard.svg"></object>
+
+    <div class="settings">
+      <input type="checkbox" id="showNoteNames" class="checkb" onclick="toggleShowNames();">
+      <label for="showNoteNames">Show note names (learning mode)</label>
+    </div>
+
+    <div class="settings">
+      <input type="checkbox" id="ignoreOctaveNumber" class="checkb">
+      <label for="ignoreOctaveNumber" id="ignoreOctaveNumberLabel">
+        Ignore octave number (for small MIDI keyboards)
+      </label>
+    </div>
+
+    <h2>Select keys and notes to practice</h2>
+
+    <h3>Keys</h3>
+
+    <div id="CMajorKeyContainer"></div>
+
+    <h4>♯ Sharps Keys</h4>
+    <fieldset>
+      <legend>
+        <button onclick="selectAll('sharpKeysContainer');">All</button>
+        <button onclick="selectNone('sharpKeysContainer');">None</button>
+        <button onclick="invertSelection('sharpKeysContainer');">Invert</button>
+        <button onclick="onRangeSelectionBtnClick(event, 'sharpKeysContainer');">Range</button>
+      </legend>
+      <div id="sharpKeysContainer"></div>
+    </fieldset>
+
+    <h4>♭ Flats Keys</h4>
+    <fieldset>
+      <legend>
+        <button onclick="selectAll('flatKeysContainer');">All</button>
+        <button onclick="selectNone('flatKeysContainer');">None</button>
+        <button onclick="invertSelection('flatKeysContainer');">Invert</button>
+        <button onclick="onRangeSelectionBtnClick(event, 'flatKeysContainer');">Range</button>
+      </legend>
+      <div id="flatKeysContainer"></div>
+    </fieldset>
+
+    <h3>Notes</h3>
+
+    <h4>𝄞 Treble Clef</h4>
+    <fieldset>
+      <legend>
+        <button onclick="selectAll('trebleClefNoteNamesContainer');">All</button>
+        <button onclick="selectNone('trebleClefNoteNamesContainer');">None</button>
+        <button onclick="invertSelection('trebleClefNoteNamesContainer');">Invert</button>
+        <button onclick="onRangeSelectionBtnClick(event, 'trebleClefNoteNamesContainer');">Range</button>
+      </legend>
+      <div id="trebleClefNoteNamesContainer"></div>
+    </fieldset>
+
+    <h4>𝄢 Bass Clef</h4>
+    <fieldset>
+      <legend>
+        <button onclick="selectAll('bassClefNoteNamesContainer');">All</button>
+        <button onclick="selectNone('bassClefNoteNamesContainer');">None</button>
+        <button onclick="invertSelection('bassClefNoteNamesContainer');">Invert</button>
+        <button onclick="onRangeSelectionBtnClick(event, 'bassClefNoteNamesContainer');">Range</button>
+      </legend>
+      <div id="bassClefNoteNamesContainer"></div>
+    </fieldset>
+
+    <div id="help">
+      <h2>Help</h2>
+      <p><img class="icon" src="icons/usb-4-24.png"> Plug in your MIDI keyboard.</p>
+      <p><img class="icon" src="icons/refresh-2-24.png"> Refresh this page.</p>
+      <p><img class="icon" src="icons/pointing-up.png"> Pick the keys and notes you want to practice.</p>
+      <p>
+        <img class="icon" src="icons/cursor-24.png">
+        Click the <button onClick="scrollToID('toolbar');">Start</button> button.
+        You will be shown the notes you have picked in a random order.
+        Press the corresponding keys on your MIDI keyboard.
+        (The octave number is ignored (so far) since many MIDI keyboards only have 2 or 3 octaves).
+      </p>
+      <p>
+        <img class="icon" src="icons/alert-24.png">
+        You may need to enable MIDI support in your browser.
+        In Firefox you need to go to the <b>about:config</b> page
+        and set <b>dom.webmidi.enabled</b> to <b>true</b>.
+      </p>
+      <p>
+        <img class="icon" src="icons/alert-24.png">
+        If you have your DAW opened it can prevent the browser from receiving MIDI events.
+      </p>
+    </div>
+
+  </body>
+
+</html>

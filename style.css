@@ -1,0 +1,253 @@
+body {
+    background-image: url("old-paper-texture-2.jpg");
+    background-repeat: repeat;
+    font-family: cursive;
+    margin: 0;
+    padding: 2px;
+    /*background-attachment: fixed;*/
+    /*font-size: 20px;*/
+}
+
+@media only screen and (min-width: 800px) {
+    body {
+      padding-left: 15%;
+      padding-right: 15%;
+    }
+}
+
+body > div {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: cursive;
+    margin: 0px;
+    margin-top: 10px;
+
+}
+
+p, label {
+    /*font-size: 20px;*/
+    font-family: cursive;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a, button {
+    background-color: transparent;
+    color: black;
+    font-family: cursive;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 2px 8px;
+}
+
+
+a:hover, button:hover {
+    /*#bbbbff*/
+    outline: none;
+    box-shadow: 0 0 3px darkgray;
+}
+
+
+button.active_btn {
+    background-color: darkred;
+    color: white;
+}
+
+
+#infobox{
+    position: relative;
+    font-family: cursive;
+    color: white;
+    background: #bb0000;
+    border: 2px solid #bb0000;
+    border-radius: 5px;
+    padding-right: 25px;
+}
+
+#infobox_text{
+    padding: 10px;
+}
+
+#infobox_close_btn {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+}
+
+
+#renderedNoteContainer {
+    width: 400px;
+    height: 250px;
+    padding: 0;
+    position: relative;
+    border: 1px solid black;
+    margin: auto;
+    margin-bottom: 5px;
+}
+
+#renderedNote {
+    width: 400px;
+    height: 250px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.renderCanvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#piano_keyboard_svg {
+    width: 400px;
+    height: 300px;
+    display: none;
+    margin: auto;
+    margin-bottom: 5px;
+}
+
+#score, .settings {
+    width: 400px;
+    margin: auto;
+}
+
+
+@media only screen and (max-width: 404px) {
+    #renderedNoteContainer, #renderedNote {
+      width: 96vw;
+      height: calc(96vw * 0.625);
+    }
+
+    #piano_keyboard_svg {
+        width: 96vw;
+        height: calc(96vw * 0.75);
+    }
+
+    #score, .settings {
+        width: 96vw;
+    }
+}
+
+#renderedNoteName {
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    z-index: 500;
+    visibility: hidden;
+    font-size: 2em;
+}
+
+
+.icon {
+    display: inline;
+}
+
+p {
+    line-height: 200%;
+}
+
+.checkb {
+    width: 30px;
+    height: 30px;
+    vertical-align: bottom;
+    cursor: pointer;
+    background: transparent;
+    color:black;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 2px solid black;
+    position: relative;
+    vertical-align: middle;
+}
+
+.checkb:checked {
+    background:url("icons/check-mark-3-24.png") no-repeat center;
+}
+
+.checkb:disabled{
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
+
+.disabled {
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
+
+div.note_card {
+    font-family: cursive;
+    border: 2px solid black;
+    margin: 3px;
+    padding: 4px;
+    display: inline-block;
+    border-radius: 4px;
+    box-shadow: 3px 3px 3px grey;
+}
+
+div.selected_note_card {
+    background-color: orange;
+}
+
+fieldset {
+    margin-top: 8px;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+fieldset legend {
+    font-family: cursive;
+}
+
+.inline_header {
+    display: inline;
+}
+
+@keyframes right_answer_animation {
+    from {
+        color: #00bb00;
+        /*text-shadow: 0px 0px 8px #00bb00;*/
+    }
+    to {
+        color: black;
+        /*text-shadow: none;*/
+    }
+}
+
+@keyframes wrong_answer_animation {
+    from {
+        color: #ff2222;
+        /*text-shadow: 0px 0px 8px #ff2222;*/
+    }
+    to {
+        color: black;
+        /*text-shadow: none;*/
+    }
+}
+
+.right_answer {
+    color: black;
+    animation-name: right_answer_animation;
+    animation-duration: 1.4s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+
+.wrong_answer {
+    color: black;
+    animation-name: wrong_answer_animation;
+    animation-duration: 1.4s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+
+#correct_answers, #incorrect_answers {
+    white-space: nowrap;
+}
