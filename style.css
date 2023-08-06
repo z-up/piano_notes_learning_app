@@ -107,7 +107,7 @@ button.active_btn {
 #piano_keyboard_svg {
     width: 400px;
     height: 300px;
-    display: none;
+    display: block;
     margin: auto;
     margin-bottom: 5px;
 }

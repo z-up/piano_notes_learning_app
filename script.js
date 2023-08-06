@@ -257,15 +257,17 @@ function setUpSVG(){
     svg.addEventListener('click', onSVGClick);
 }
 
-function showSVGKeyboard(){
-    const svgKb = document.getElementById("piano_keyboard_svg");
-    svgKb.style.display = "block";
+
+function hideSVGKeyboard(){
+    const svgObj = document.getElementById("piano_keyboard_svg");
+    svgObj.style.display = "none";
 
     const ignoreOctaveCheckBox = document.getElementById("ignoreOctaveNumber");
-    ignoreOctaveCheckBox.checked = true;
-    ignoreOctaveCheckBox.disabled = true;
-    document.getElementById("ignoreOctaveNumberLabel").classList.add("disabled");;
+    ignoreOctaveCheckBox.checked = false;
+    ignoreOctaveCheckBox.disabled = false;
+    document.getElementById("ignoreOctaveNumberLabel").classList.remove("disabled");
 }
+
 
 function onSVGClick(e) {
     if(!TEST_IS_ACTIVE) {
@@ -324,7 +326,6 @@ function checkMIDISupport() {
             "No Web MIDI support. You may need to enable it your browser. "
             + "Or you can use the on-screen keyboard."
         );
-        showSVGKeyboard();
     }
 }
 
@@ -338,16 +339,15 @@ function onMIDISuccess(midiAccess) {
 
     if(inputsCount === 0) {
         showInfoBox("No MIDI devices found. You can use the on-screen keyboard.");
-        showSVGKeyboard();
     }
     else {
         closeInfoBox();
+        hideSVGKeyboard();
     }
 }
 
 function onMIDIFailure() {
     showInfoBox("Could not access MIDI devices. You can use the on-screen keyboard.");
-    showSVGKeyboard();
 }
 
 function getMIDIMessage(message) {
