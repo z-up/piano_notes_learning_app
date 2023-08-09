@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20000303 Stylable//EN"
 "http://www.w3.org/TR/2000/03/WD-SVG-20000303/DTD/svg-20000303-stylable.dtd">
-<svg 
-    xml:space="preserve" 
-    width="100%" 
-    height="100%" 
-    xmlns="http://www.w3.org/2000/svg" 
-    xmlns:xlink="http://www.w3.org/1999/xlink" 
+<svg
+    xml:space="preserve"
+    width="100%"
+    height="100%"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 161 120"
     preserveAspectRatio="xMinYMin meet">
 
-<!-- 
+<!--
      Copyright (c)  2005 Lauri Kaila.
      Permission is granted to copy, distribute and/or modify this document
      under the terms of the GNU Free Documentation License, Version 1.2
@@ -18,21 +18,21 @@
      with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
      A copy of the license is included in the section entitled "GNU
      Free Documentation License".
-     
-     
-     
+
+
+
      Intented to create a keyboard where key widths are
-     accurately in position. 
-     
+     accurately in position.
+
      See http://www.mathpages.com/home/kmath043.htm
      for the math.
-     
+
      This keyboard has following properties (x=octave width).
      1. All white keys have equal width in front (W=x/7).
      2. All black keys have equal width (B=x/12).
      3. The narrow part of white keys C, D and E is W - B*2/3
      4. The narrow part of white keys F, G, A, and B is W - B*3/4
-     
+
 -->
 
 <!-- White keys  -->
@@ -62,8 +62,15 @@
     stroke: black;
   }
 
-  rect:hover {
-    fill: #fce57e !important;
+  @media (hover: hover) {
+    rect:hover {
+      fill: #fce57e !important;
+    }
   }
+
+  rect:active {
+    fill: #ffc90e !important;
+  }
+
 </style>
 </svg>

@@ -316,6 +316,7 @@ function render(clef, key, note) {
 
 // MIDI keyboard
 function checkMIDISupport() {
+    showInfoBox("Checking MIDI support");
     if (navigator.requestMIDIAccess) {
         navigator
             .requestMIDIAccess()
