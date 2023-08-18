@@ -35,10 +35,14 @@ p, label {
 
 a {
     text-decoration: none;
-    color: black;
+    color: rgb(146, 0, 146);
 }
 
-a, button {
+a:hover{
+    color: rgb(250, 4, 250);
+}
+
+button {
     background-color: transparent;
     color: black;
     font-family: cursive;
@@ -47,8 +51,7 @@ a, button {
     padding: 2px 8px;
 }
 
-
-a:hover, button:hover {
+button:hover {
     /*#bbbbff*/
     outline: none;
     box-shadow: 0 0 3px darkgray;
@@ -115,6 +118,25 @@ button.active_btn {
 #score, .settings {
     width: 400px;
     margin: auto;
+}
+
+select {
+    font-family: cursive;
+    font-size: 1em;
+    border: 2px solid black;
+    background-color: transparent;
+    margin: 0;
+}
+
+select option {
+    font-family: cursive;
+    font-size: 1em;
+    /*background-color: #fbeeba;*/
+}
+
+#instrument {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 
@@ -243,11 +265,13 @@ fieldset legend {
 .wrong_answer {
     color: black;
     animation-name: wrong_answer_animation;
-    animation-duration: 1.4s;
-    animation-iteration-count: 1;
-    animation-timing-function: ease-in-out;
+    animation-duration: 0.15s;
+    animation-iteration-count: 4;
+    animation-timing-function: ease-in;
 }
 
 #correct_answers, #incorrect_answers {
     white-space: nowrap;
 }
+
+

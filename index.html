@@ -8,6 +8,7 @@
     <link href="piano.ico" rel="icon" type="image/x-icon" />
     <title>Piano notes learning app</title>
     <script src="vexflow.js" charset="utf-8"></script>
+    <script src="webaudio-tinysynth.min.js" charset="utf-8"></script>
     <script src="script.js" charset="utf-8"></script>
   </head>
 
@@ -45,6 +46,16 @@
       <label for="ignoreOctaveNumber" id="ignoreOctaveNumberLabel" class="disabled">
         Ignore octave number (for small MIDI keyboards)
       </label>
+    </div>
+
+    <div class="settings">
+      <input type="checkbox" id="muteSounds" class="checkb">
+      <label for="muteSounds">Mute sounds</label>
+    </div>
+
+    <div class="settings">
+      <label for="instrument">Instrument</label>
+      <select id="instrument" onchange="SetInstrument(this.selectedIndex);"></select>
     </div>
 
     <h2>Select keys and notes to practice</h2>
@@ -99,29 +110,40 @@
       <div id="bassClefNoteNamesContainer"></div>
     </fieldset>
 
-    <div id="help">
-      <h2>Help</h2>
-      <p><img class="icon" src="icons/usb-4-24.png"> Plug in your MIDI keyboard.</p>
-      <p><img class="icon" src="icons/refresh-2-24.png"> Refresh this page.</p>
-      <p><img class="icon" src="icons/pointing-up.png"> Pick the keys and notes you want to practice.</p>
-      <p>
-        <img class="icon" src="icons/cursor-24.png">
-        Click the <button onClick="scrollToID('toolbar');">Start</button> button.
-        You will be shown the notes you have picked in a random order.
-        Press the corresponding keys on your MIDI keyboard.
-        (The octave number is ignored (so far) since many MIDI keyboards only have 2 or 3 octaves).
-      </p>
-      <p>
-        <img class="icon" src="icons/alert-24.png">
-        You may need to enable MIDI support in your browser.
-        In Firefox you need to go to the <b>about:config</b> page
-        and set <b>dom.webmidi.enabled</b> to <b>true</b>.
-      </p>
-      <p>
-        <img class="icon" src="icons/alert-24.png">
-        If you have your DAW opened it can prevent the browser from receiving MIDI events.
-      </p>
-    </div>
+    <h2 id="help">Help</h2>
+
+    <p><img class="icon" src="icons/usb-4-24.png"> Plug in your MIDI keyboard.</p>
+    <p><img class="icon" src="icons/refresh-2-24.png"> Refresh this page.</p>
+    <p><img class="icon" src="icons/pointing-up.png"> Pick the keys and notes you want to practice.</p>
+    <p>
+      <img class="icon" src="icons/cursor-24.png">
+      Click the <button onClick="scrollToID('toolbar');">Start</button> button.
+      You will be shown the notes you have picked in a random order.
+      Press the corresponding keys on your MIDI keyboard.
+      (The octave number is ignored (so far) since many MIDI keyboards only have 2 or 3 octaves).
+    </p>
+    <p>
+      <img class="icon" src="icons/alert-24.png">
+      You may need to enable MIDI support in your browser.
+      In Firefox you need to go to the <b>about:config</b> page
+      and set <b>dom.webmidi.enabled</b> to <b>true</b>.
+    </p>
+    <p>
+      <img class="icon" src="icons/alert-24.png">
+      If you have your DAW opened it can prevent the browser from receiving MIDI events.
+    </p>
+
+    <h2>Links</h2>
+    <p>
+      <a target="_blank" href="https://github.com/0xfe/vexflow">
+        <b>VexFlow</b> - an open-source library for rendering music notation
+      </a>
+    </p>
+    <p>
+      <a target="_blank" href="https://github.com/g200kg/webaudio-tinysynth">
+        <b>webaudio-tinysynth</b> - a small synthesizer written in JavaScript with GM like timbre map
+      </a>
+    </p>
 
   </body>
 

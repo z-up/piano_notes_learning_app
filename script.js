@@ -273,6 +273,7 @@ function onSVGClick(e) {
     if(!TEST_IS_ACTIVE) {
         return;
     }
+
     const noteName = e.target.id;
     // svg keyboard uses note names with sharps as rect ids
     const noteNumber = SHARP_NOTES.indexOf(noteName);
@@ -521,6 +522,9 @@ function getRandomArrayElement(arr){
 
 function checkNote(noteNumber, octaveNumber){
     const ignoreOctave = document.getElementById("ignoreOctaveNumber").checked;
+
+    let octaveToPlay = octaveNumber;
+
     if(noteNumber === TEST_NOTE_NUMBER){
         if(!ignoreOctave && octaveNumber !== TEST_OCTAVE_NUMBER){
             const errorSize = Math.abs(TEST_OCTAVE_NUMBER - octaveNumber);
@@ -533,14 +537,29 @@ function checkNote(noteNumber, octaveNumber){
             showInfoBox(errMsg);
         }
         else{
+            octaveToPlay = TEST_OCTAVE_NUMBER;
             closeInfoBox();
             updateScore(CORRECT_ANSWERS + 1, INCORRECT_ANSWERS);
             pickRandomNote();
         }
     }
     else{
+        if(ignoreOctave){
+            // find the closest note to the needed one
+            const testNoteMIDINumber = getNoteMIDINumber(TEST_OCTAVE_NUMBER, TEST_NOTE_NUMBER);
+            for(let oct = 0; oct <= 9; oct += 1){
+                if(Math.abs(testNoteMIDINumber - getNoteMIDINumber(oct, noteNumber)) <= 6){
+                    octaveToPlay = oct;
+                    break;
+                }
+            }
+        }
         closeInfoBox();
         updateScore(CORRECT_ANSWERS, INCORRECT_ANSWERS + 1);
+    }
+
+    if(!document.getElementById("muteSounds").checked){
+        playNote(octaveToPlay, noteNumber);
     }
 }
 
@@ -555,4 +574,60 @@ function updateScore(newCorrectAnswers, newIncorrectAnswers){
         document.getElementById('incorrect_answers').innerHTML =
             `<span class="wrong_answer">Incorrect: ${INCORRECT_ANSWERS}</span>`;
     }
+}
+
+// playing the sounds
+function getNoteMIDINumber(octave, note){
+    return note + octave * 12 + 12;
+}
+
+function getNoteFrequency(octave, note){
+    const noteMIDINumber = getNoteMIDINumber(octave, note);
+    // formula taken from https://www.music.mcgill.ca/~gary/307/week1/node28.html
+    return 440 * Math.pow(2, (noteMIDINumber - 69) / 12);
+}
+
+
+let TINY_SYNTH = null;
+let NOTE_TIMEOUT = null;
+function InitTinySynth(){
+    TINY_SYNTH = new WebAudioTinySynth({voices:1});
+    const instrumentSelect = document.getElementById("instrument");
+    for(let i = 0; i < 128; ++i) {
+      var option = document.createElement("option");
+      option.innerHTML = TINY_SYNTH.getTimbreName(0, i);
+      instrumentSelect.appendChild(option);
+    }
+}
+
+
+let CURRENTLY_PLAYING_NOTE = -1;
+function playNote(octaveNumber, noteNumber){
+    if(TINY_SYNTH === null){
+        InitTinySynth();
+    }
+    if(NOTE_TIMEOUT !== null){
+        window.clearTimeout(NOTE_TIMEOUT);
+        NOTE_TIMEOUT = null;
+    }
+    // stop playing previous note
+    if(CURRENTLY_PLAYING_NOTE !== -1){
+        TINY_SYNTH.send([0x80, CURRENTLY_PLAYING_NOTE, 0]);
+        CURRENTLY_PLAYING_NOTE = -1;
+    }
+
+    CURRENTLY_PLAYING_NOTE = getNoteMIDINumber(octaveNumber, noteNumber);
+    TINY_SYNTH.send([0x90, CURRENTLY_PLAYING_NOTE, 100]);
+    NOTE_TIMEOUT = window.setTimeout(
+        () => {
+            TINY_SYNTH.send([0x80, CURRENTLY_PLAYING_NOTE, 0]);
+            CURRENTLY_PLAYING_NOTE = -1;
+            NOTE_TIMEOUT = null;
+        },
+        2000
+    );
+}
+
+function SetInstrument(p) {
+    TINY_SYNTH.send([0xc0, p]);
 }
