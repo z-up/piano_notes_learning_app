@@ -4,7 +4,7 @@ const SHARP_NOTES = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A
 function onPageLoad(){
     createKeyCards();
     createNoteCards();
-    setUpSVG();
+    setUpOnScreenKeyboards();
     render('treble', 'C');
     checkMIDISupport();
 }
@@ -251,25 +251,36 @@ function handleCardSelection(card){
     }
 }
 
-// svg
-function setUpSVG(){
-    const svg = document.getElementById("piano_keyboard_svg").contentDocument;
-    svg.addEventListener('click', onSVGClick);
+// on-screen keyboard
+function setUpOnScreenKeyboards(){
+    setUpSVGKeyboard("piano_keyboard_svg", onSmallSvgKeyboardClick);
+    setUpSVGKeyboard("full_piano_keyboard_svg", onFullSvgKeyboardClick);
 }
 
-
-function hideSVGKeyboard(){
-    const svgObj = document.getElementById("piano_keyboard_svg");
+function setUpSVGKeyboard(elId, clickHandler){
+    const svgObj = document.getElementById(elId);
+    const svg = svgObj.contentDocument;
+    svg.addEventListener('click', clickHandler);
     svgObj.style.display = "none";
-
-    const ignoreOctaveCheckBox = document.getElementById("ignoreOctaveNumber");
-    ignoreOctaveCheckBox.checked = false;
-    ignoreOctaveCheckBox.disabled = false;
-    document.getElementById("ignoreOctaveNumberLabel").classList.remove("disabled");
+    svgObj.style.visibility = "visible";
 }
 
 
-function onSVGClick(e) {
+function showOnScreenKeyboard() {
+    if (window.innerWidth >= 1280){
+        document.getElementById("full_piano_keyboard_svg").style.display = "block";
+    }
+    else{
+        document.getElementById("piano_keyboard_svg").style.display = "block";
+        const ignoreOctaveNumberCheckBox = document.getElementById("ignoreOctaveNumber");
+        ignoreOctaveNumberCheckBox.checked = true;
+        ignoreOctaveNumberCheckBox.disabled = true;
+        document.getElementById("ignoreOctaveNumberLabel").classList.add("disabled");
+    }
+}
+
+
+function onSmallSvgKeyboardClick(e) {
     if(!TEST_IS_ACTIVE) {
         return;
     }
@@ -277,8 +288,20 @@ function onSVGClick(e) {
     const noteName = e.target.id;
     // svg keyboard uses note names with sharps as rect ids
     const noteNumber = SHARP_NOTES.indexOf(noteName);
-    // octave number should be ignored when using SVG keyboard
+    // octave number should be ignored when using small SVG keyboard
     checkNote(noteNumber, 0);
+}
+
+function onFullSvgKeyboardClick(e) {
+    if(!TEST_IS_ACTIVE) {
+        return;
+    }
+
+    const [noteName, octaveNumberStr] = e.target.id.split("_");
+    // svg keyboard uses note names with sharps as rect ids
+    const noteNumber = SHARP_NOTES.indexOf(noteName);
+    const octaveNumber = parseInt(octaveNumberStr);
+    checkNote(noteNumber, octaveNumber);
 }
 
 
@@ -328,6 +351,7 @@ function checkMIDISupport() {
             "No Web MIDI support. You may need to enable it your browser. "
             + "Or you can use the on-screen keyboard."
         );
+        showOnScreenKeyboard();
     }
 }
 
@@ -341,15 +365,16 @@ function onMIDISuccess(midiAccess) {
 
     if(inputsCount === 0) {
         showInfoBox("No MIDI devices found. You can use the on-screen keyboard.");
+        showOnScreenKeyboard();
     }
     else {
         closeInfoBox();
-        hideSVGKeyboard();
     }
 }
 
 function onMIDIFailure() {
     showInfoBox("Could not access MIDI devices. You can use the on-screen keyboard.");
+    showOnScreenKeyboard();
 }
 
 function getMIDIMessage(message) {
@@ -513,7 +538,7 @@ function pickRandomNote() {
         }
     }
 
-    document.getElementById('renderedNoteName').innerHTML = noteName;
+    document.getElementById('renderedNoteName').innerHTML = `${noteName}/${TEST_OCTAVE_NUMBER}`;
 }
 
 function getRandomArrayElement(arr){
@@ -593,11 +618,13 @@ let NOTE_TIMEOUT = null;
 function InitTinySynth(){
     TINY_SYNTH = new WebAudioTinySynth({voices:1});
     const instrumentSelect = document.getElementById("instrument");
+    instrumentSelect.innerHTML = "";
     for(let i = 0; i < 128; ++i) {
       var option = document.createElement("option");
       option.innerHTML = TINY_SYNTH.getTimbreName(0, i);
       instrumentSelect.appendChild(option);
     }
+    instrumentSelect.disabled = false;
 }
 
 

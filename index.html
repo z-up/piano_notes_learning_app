@@ -36,14 +36,16 @@
 
     <object id="piano_keyboard_svg" type="image/svg+xml" data="PianoKeyboard.svg"></object>
 
+    <object id="full_piano_keyboard_svg" type="image/svg+xml" data="PianoKeyboard88.svg"></object>
+
     <div class="settings">
       <input type="checkbox" id="showNoteNames" class="checkb" onclick="toggleShowNames();">
       <label for="showNoteNames">Show note names (learning mode)</label>
     </div>
 
     <div class="settings">
-      <input type="checkbox" id="ignoreOctaveNumber" class="checkb" checked disabled>
-      <label for="ignoreOctaveNumber" id="ignoreOctaveNumberLabel" class="disabled">
+      <input type="checkbox" id="ignoreOctaveNumber" class="checkb">
+      <label for="ignoreOctaveNumber" id="ignoreOctaveNumberLabel">
         Ignore octave number (for small MIDI keyboards)
       </label>
     </div>
@@ -55,7 +57,9 @@
 
     <div class="settings">
       <label for="instrument">Instrument</label>
-      <select id="instrument" onchange="SetInstrument(this.selectedIndex);"></select>
+      <select id="instrument" onchange="SetInstrument(this.selectedIndex);" disabled>
+        <option>Acoustic Grand Piano<option>
+      </select>
     </div>
 
     <h2>Select keys and notes to practice</h2>
@@ -118,9 +122,6 @@
     <p>
       <img class="icon" src="icons/cursor-24.png">
       Click the <button onClick="scrollToID('toolbar');">Start</button> button.
-      You will be shown the notes you have picked in a random order.
-      Press the corresponding keys on your MIDI keyboard.
-      (The octave number is ignored (so far) since many MIDI keyboards only have 2 or 3 octaves).
     </p>
     <p>
       <img class="icon" src="icons/alert-24.png">

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20000303 Stylable//EN"
+"http://www.w3.org/TR/2000/03/WD-SVG-20000303/DTD/svg-20000303-stylable.dtd">
+<svg
+  xml:space="preserve"
+  width="100%"
+  height="100%"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="0 0 1196 120"
+  preserveAspectRatio="xMinYMin meet">
+
+<!--
+  Copyright (c)  2005 Lauri Kaila.
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2
+  or any later version published by the Free Software Foundation;
+  with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+  A copy of the license is included in the section entitled "GNU
+  Free Documentation License".
+
+
+
+  Intented to create a keyboard where key widths are
+  accurately in position.
+
+  See http://www.mathpages.com/home/kmath043.htm
+  for the math.
+
+  This keyboard has following properties (x=octave width).
+  1. All white keys have equal width in front (W=x/7).
+  2. All black keys have equal width (B=x/12).
+  3. The narrow part of white keys C, D and E is W - B*2/3
+  4. The narrow part of white keys F, G, A, and B is W - B*3/4
+
+-->
+
+<defs>
+  <rect id="wk" class="white_key" y="0" width="23" height="120" />
+  <rect id="bk" class="black_key" y="0" width="13" height="80" />
+</defs>
+
+<!-- white keys -->
+<use xlink:href="#wk" id="A_0" x="0" />
+<use xlink:href="#wk" id="B_0" x="23" />
+<use xlink:href="#wk" id="C_1" x="46" />
+<use xlink:href="#wk" id="D_1" x="69" />
+<use xlink:href="#wk" id="E_1" x="92" />
+<use xlink:href="#wk" id="F_1" x="115" />
+<use xlink:href="#wk" id="G_1" x="138" />
+<use xlink:href="#wk" id="A_1" x="161" />
+<use xlink:href="#wk" id="B_1" x="184" />
+<use xlink:href="#wk" id="C_2" x="207" />
+<use xlink:href="#wk" id="D_2" x="230" />
+<use xlink:href="#wk" id="E_2" x="253" />
+<use xlink:href="#wk" id="F_2" x="276" />
+<use xlink:href="#wk" id="G_2" x="299" />
+<use xlink:href="#wk" id="A_2" x="322" />
+<use xlink:href="#wk" id="B_2" x="345" />
+<use xlink:href="#wk" id="C_3" x="368" />
+<use xlink:href="#wk" id="D_3" x="391" />
+<use xlink:href="#wk" id="E_3" x="414" />
+<use xlink:href="#wk" id="F_3" x="437" />
+<use xlink:href="#wk" id="G_3" x="460" />
+<use xlink:href="#wk" id="A_3" x="483" />
+<use xlink:href="#wk" id="B_3" x="506" />
+<use xlink:href="#wk" id="C_4" x="529" />
+<use xlink:href="#wk" id="D_4" x="552" />
+<use xlink:href="#wk" id="E_4" x="575" />
+<use xlink:href="#wk" id="F_4" x="598" />
+<use xlink:href="#wk" id="G_4" x="621" />
+<use xlink:href="#wk" id="A_4" x="644" />
+<use xlink:href="#wk" id="B_4" x="667" />
+<use xlink:href="#wk" id="C_5" x="690" />
+<use xlink:href="#wk" id="D_5" x="713" />
+<use xlink:href="#wk" id="E_5" x="736" />
+<use xlink:href="#wk" id="F_5" x="759" />
+<use xlink:href="#wk" id="G_5" x="782" />
+<use xlink:href="#wk" id="A_5" x="805" />
+<use xlink:href="#wk" id="B_5" x="828" />
+<use xlink:href="#wk" id="C_6" x="851" />
+<use xlink:href="#wk" id="D_6" x="874" />
+<use xlink:href="#wk" id="E_6" x="897" />
+<use xlink:href="#wk" id="F_6" x="920" />
+<use xlink:href="#wk" id="G_6" x="943" />
+<use xlink:href="#wk" id="A_6" x="966" />
+<use xlink:href="#wk" id="B_6" x="989" />
+<use xlink:href="#wk" id="C_7" x="1012" />
+<use xlink:href="#wk" id="D_7" x="1035" />
+<use xlink:href="#wk" id="E_7" x="1058" />
+<use xlink:href="#wk" id="F_7" x="1081" />
+<use xlink:href="#wk" id="G_7" x="1104" />
+<use xlink:href="#wk" id="A_7" x="1127" />
+<use xlink:href="#wk" id="B_7" x="1150" />
+<use xlink:href="#wk" id="C_8" x="1173" />
+
+<!-- black keys -->
+<use xlink:href="#bk" id="A♯0" x="19.75" />
+<use xlink:href="#bk" id="C♯_1" x="60.33333" />
+<use xlink:href="#bk" id="D♯_1" x="87.66666" />
+<use xlink:href="#bk" id="F♯_1" x="128.25" />
+<use xlink:href="#bk" id="G♯_1" x="154.25" />
+<use xlink:href="#bk" id="A♯_1" x="180.75" />
+<use xlink:href="#bk" id="C♯_2" x="221.33333" />
+<use xlink:href="#bk" id="D♯_2" x="248.66666" />
+<use xlink:href="#bk" id="F♯_2" x="289.25" />
+<use xlink:href="#bk" id="G♯_2" x="315.25" />
+<use xlink:href="#bk" id="A♯_2" x="341.75" />
+<use xlink:href="#bk" id="C♯_3" x="382.33333" />
+<use xlink:href="#bk" id="D♯_3" x="409.66666" />
+<use xlink:href="#bk" id="F♯_3" x="450.25" />
+<use xlink:href="#bk" id="G♯_3" x="476.25" />
+<use xlink:href="#bk" id="A♯_3" x="502.75" />
+<use xlink:href="#bk" id="C♯_4" x="543.33333" />
+<use xlink:href="#bk" id="D♯_4" x="570.66666" />
+<use xlink:href="#bk" id="F♯_4" x="611.25" />
+<use xlink:href="#bk" id="G♯_4" x="637.25" />
+<use xlink:href="#bk" id="A♯_4" x="663.75" />
+<use xlink:href="#bk" id="C♯_5" x="704.33333" />
+<use xlink:href="#bk" id="D♯_5" x="731.66666" />
+<use xlink:href="#bk" id="F♯_5" x="772.25" />
+<use xlink:href="#bk" id="G♯_5" x="798.25" />
+<use xlink:href="#bk" id="A♯_5" x="824.75" />
+<use xlink:href="#bk" id="C♯_6" x="865.33333" />
+<use xlink:href="#bk" id="D♯_6" x="892.66666" />
+<use xlink:href="#bk" id="F♯_6" x="933.25" />
+<use xlink:href="#bk" id="G♯_6" x="959.25" />
+<use xlink:href="#bk" id="A♯_6" x="985.75" />
+<use xlink:href="#bk" id="C♯_7" x="1026.33333" />
+<use xlink:href="#bk" id="D♯_7" x="1053.66666" />
+<use xlink:href="#bk" id="F♯_7" x="1094.25" />
+<use xlink:href="#bk" id="G♯_7" x="1120.25" />
+<use xlink:href="#bk" id="A♯_7" x="1146.75" />
+
+<style>
+  rect.white_key {
+    fill: white;
+    stroke: black;
+  }
+
+  rect.black_key {
+    fill: black;
+    stroke: black;
+  }
+
+  @media (hover: hover) {
+    rect:hover {
+      fill: #fce57e !important;
+    }
+  }
+
+  rect:active {
+    fill: #ffc90e !important;
+  }
+
+</style>
+</svg>

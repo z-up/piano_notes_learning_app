@@ -110,8 +110,13 @@ button.active_btn {
 #piano_keyboard_svg {
     width: 400px;
     height: 300px;
-    display: block;
     margin: auto;
+    margin-bottom: 5px;
+    visibility: hidden;
+}
+
+#full_piano_keyboard_svg {
+    visibility: hidden;
     margin-bottom: 5px;
 }
 
