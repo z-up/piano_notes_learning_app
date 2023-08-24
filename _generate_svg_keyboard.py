@@ -11,7 +11,7 @@ for i in range(0, 52):
 
 # black keys
 file.write("\n<!-- black keys -->\n")
-file.write(f'<use xlink:href="#bk" id="A♯0" x="{134.75 - 23 * 5}" />\n')
+file.write(f'<use xlink:href="#bk" id="A♯_0" x="{134.75 - 23 * 5}" />\n')
 black_key_names = "CDFGA"
 black_key_x_offsets = [14.33333, 41.66666, 82.25, 108.25, 134.75] # offsets within octave
 for octave in range(1, 8):

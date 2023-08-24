@@ -606,13 +606,6 @@ function getNoteMIDINumber(octave, note){
     return note + octave * 12 + 12;
 }
 
-function getNoteFrequency(octave, note){
-    const noteMIDINumber = getNoteMIDINumber(octave, note);
-    // formula taken from https://www.music.mcgill.ca/~gary/307/week1/node28.html
-    return 440 * Math.pow(2, (noteMIDINumber - 69) / 12);
-}
-
-
 let TINY_SYNTH = null;
 let NOTE_TIMEOUT = null;
 function InitTinySynth(){
