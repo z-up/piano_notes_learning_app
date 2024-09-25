@@ -496,7 +496,7 @@ const FLAT_KEYS = {
     'Cb': ['B', 'E', 'A', 'D', 'G', 'C', 'F'],
 }
 
-let TEST_NOTE_NUMBER = 0;
+let TEST_NOTE_NUMBER = 0; // number within an octave (0-11)
 let TEST_OCTAVE_NUMBER = 0;
 
 function pickRandomNote() {
@@ -517,6 +517,12 @@ function pickRandomNote() {
     const noteAndOctave = note.split('/');
     let noteName = noteAndOctave[0];
     TEST_OCTAVE_NUMBER = parseInt(noteAndOctave[1]);
+
+    // We need to keep the original octave number
+    // to display the correct note names for C♭ and B♯
+    // (C♭/4 for example will be representrd as the 11th note in the 3rd octave)
+    const originalOctaveNumber = TEST_OCTAVE_NUMBER;
+
     // noteName never contains a sharp or a flat sign
     TEST_NOTE_NUMBER = SHARP_NOTES.indexOf(noteName);
 
@@ -538,7 +544,7 @@ function pickRandomNote() {
         }
     }
 
-    document.getElementById('renderedNoteName').innerHTML = `${noteName}/${TEST_OCTAVE_NUMBER}`;
+    document.getElementById('renderedNoteName').innerHTML = `${noteName}/${originalOctaveNumber}`;
 }
 
 function getRandomArrayElement(arr){
