@@ -1,7 +1,0 @@
-To generate an SSL certificate for the Python HTTPS server:
-openssl req -new -x509 -keyout server.pem -out server.pem -days 365 -nodes
-
-To run this command on Windows open GitBash.
-(GitBash is a(n optional) part of Git for Windows installation.)
-
-(https://gist.github.com/stephenbradshaw/a2b72b5b58c93ca74b54f7747f18a481)
